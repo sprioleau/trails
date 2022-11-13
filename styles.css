@@ -18,6 +18,7 @@ body {
 	justify-content: center;
 	overflow: hidden;
 	font-family: Mali, Avenir, sans-serif;
+	overscroll-behavior: none;
 }
 
 header {
