@@ -89,7 +89,7 @@ function handleMouseup() {
 }
 
 function handleTouches(e) {
-  [...e.touches].forEach((touch) => {
+  Array.from(e.touches).forEach((touch) => {
     const { clientX: x, clientY: y } = touch;
     trailElements.push(new TrailElement({ x, y, shape }))
   })
