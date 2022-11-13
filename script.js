@@ -116,3 +116,7 @@ addEventListener("touchmove", handleTouches)
 addEventListener("resize", handleResize)
 circle.addEventListener("click", handleSelectCircle)
 square.addEventListener("click", handleSelectSquare)
+addEventListener("scroll", (e) => {
+  e.preventDefault();
+  window.scrollTo(0, 0);
+});
