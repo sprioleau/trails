@@ -1,0 +1,28 @@
+{
+  "background_color": "hsl(0, 0%, 11%)",
+  "description": "🖌 Make colorful trails with your finger or mouse!",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "sizes": "512x512",
+      "src": "/images/logo.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "sizes": "192x192",
+      "src": "/images/logo_192px.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "/images/logo_512px.png",
+      "type": "image/png"
+    }
+  ],
+  "id": "/",
+  "name": "Trails",
+  "short_name": "Trails",
+  "start_url": "/",
+  "orientation": "portrait",
+  "theme_color": "hsl(0, 0%, 11%)"
+}
