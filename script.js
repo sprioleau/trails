@@ -1,3 +1,6 @@
+const circle = document.getElementById("circle");
+const square = document.getElementById("square");
+
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext('2d');
 
@@ -5,43 +8,58 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 let mouseIsPressed = false,
-    trailElements = [];
+  trailElements = [],
+  shape = "circle";
 
 class TrailElement {
   constructor({ x, y }) {
     this.x = x;
     this.y = y;
-    this.radius = 2;
-    this.maxRadius = 30;
+    this.size = 5;
+    this.maxSize = 50;
     this.opacity = 1;
+    this.angle = 0;
     this.frames = 0;
     this.frameRate = 2;
     this.lineWidth = 1;
-    this.hue = 50;
+    this.hue = Math.random() * 50 + 100;
     this.shouldRemove = false; 
   }
 
   draw() {
+    c.lineWidth = this.lineWidth;
+    c.strokeStyle = `hsl(${this.hue}, 100%, 50%)`;
+    
     c.save();
     c.globalAlpha = this.opacity;
-    c.strokeStyle = `hsl(${this.hue}, 100%, 50%)`
-    c.lineWidth = this.lineWidth;
-    c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
-    c.stroke();
+    
+    if (shape === "square") {
+      c.translate(this.x + this.size / 2, this.y + this.size / 2)
+      c.rotate(this.angle * Math.PI / 180);
+      c.translate(-(this.x + this.size / 2), -(this.y + this.size / 2))
+      c.strokeRect(this.x, this.y, this.size, this.size);
+    } else if (shape === "circle") {
+      c.beginPath();
+      c.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+      c.stroke();
+    }
+
     c.restore();
   }
 
   update() {
     this.draw();
 
-    if (this.frames % this.frameRate === 0) this.radius++;
-    if (this.radius > this.maxRadius) this.shouldRemove = true; 
+    if (this.frames % this.frameRate === 0) {
+      this.size++
+      this.opacity = 1 - this.size / this.maxSize;
+      this.hue += 10;
+      this.angle += 15;
+    };
 
-    this.opacity = 1 - this.radius / this.maxRadius;
+    if (this.size > this.maxSize) this.shouldRemove = true; 
+
     this.frames++;
-    this.hue += 10;
-    this.lineWidth += 0.125;
   }
 }
 
@@ -80,9 +98,19 @@ function handleResize() {
   canvas.height = innerHeight;
 }
 
+function handleSelectCircle() {
+  shape = "circle";
+}
+
+function handleSelectSquare() {
+  shape = "square";
+}
+
 addEventListener("mousedown", handleMousedown)
 addEventListener("mousemove", handleMousemove)
 addEventListener("mouseup", handleMouseup)
 addEventListener("touchstart", handleTouches) 
 addEventListener("touchmove", handleTouches)
 addEventListener("resize", handleResize)
+circle.addEventListener("click", handleSelectCircle)
+square.addEventListener("click", handleSelectSquare)
