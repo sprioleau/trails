@@ -28,7 +28,7 @@ class TrailElement {
 
   draw() {
     c.lineWidth = this.lineWidth;
-    c.strokeStyle = `hsl(${this.hue}, 100%, 50%)`;
+    c.strokeStyle = `hsl(${this.hue}, 100%, 60%)`;
     
     c.save();
     c.globalAlpha = this.opacity;
@@ -57,7 +57,7 @@ class TrailElement {
       this.angle += 15;
     };
 
-    if (this.size > this.maxSize) this.shouldRemove = true; 
+    if (this.size > this.maxSize) return this.shouldRemove = true;
 
     this.frames++;
   }

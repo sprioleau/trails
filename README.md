@@ -1,6 +1,6 @@
 ![Social Card][social-card-url]
 
-![Netlify Status]()
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7629f891-7235-4721-98ca-529bbc4f5531/deploy-status)](https://app.netlify.com/sites/sp-trails/deploys)
 
 # Trails | Colorul HTML Canvas Interactions
 
@@ -8,11 +8,7 @@
 
 ## 🔗 Links
 
-- 🚀 Deployed at [][deployed-url]
-
-## Screenshots
-
-![Homepage Screenshot][homepage-screenshot-url]
+- 🚀 Deployed at [https://sp-trails.netlify.app/][deployed-url]
 
 ## 💿 Installation
 
@@ -45,6 +41,5 @@ git clone https://github.com/sprioleau/trails.git
 [linkedin]: https://www.linkedin.com/in/sanquanprioleau/
 
 <!-- Project Details -->
-[deployed-url]: https://sprioleau.dev
-[social-card-url]: https://sprioleau.dev/images/sprioleau-social-card.png "Social Card"
-[homepage-screenshot-url]: https://sprioleau.dev/images/homepage.png "Homepage Screenshot"
+[deployed-url]: https://sp-trails.netlify.app/
+[social-card-url]: https://sp-trails.netlify.app/images/trails_social_card.png "Social Card"
