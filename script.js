@@ -75,8 +75,14 @@ function handleTouches(e) {
   })
 }
 
+function handleResize() {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+
 addEventListener("mousedown", handleMousedown)
 addEventListener("mousemove", handleMousemove)
 addEventListener("mouseup", handleMouseup)
 addEventListener("touchstart", handleTouches) 
 addEventListener("touchmove", handleTouches)
+addEventListener("resize", handleResize)
