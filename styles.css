@@ -66,9 +66,14 @@ button:hover {
 #square {
 	width: 50px;
 	height: 50px;
-	border: 1px solid;
+	border: 2px solid;
 	position: relative;
 	overflow: hidden;
+}
+
+#circle:hover,
+#square:hover {
+	--alpha: 0.5;
 }
 
 #circle {
@@ -77,11 +82,7 @@ button:hover {
 	background-color: rgba(var(--rgb), var(--alpha));
 	border-radius: 50%;
 	left: var(--gap);
-}
-
-#circle:hover,
-#square:hover {
-	--alpha: 0.5;
+	animation: pulse 1s ease-out infinite alternate;
 }
 
 #square {
@@ -89,4 +90,26 @@ button:hover {
 	border-color: rgb(var(--rgb));
 	background-color: rgba(var(--rgb), var(--alpha));
 	right: var(--gap);
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg) scale(0.75);
+	}
+	50% {
+		transform: rotate(180deg) scale(0.9);
+	}
+	100% {
+		transform: rotate(360deg) scale(0.75);
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1.1);
+	}
 }
