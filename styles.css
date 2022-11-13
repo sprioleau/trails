@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+h1 {
+	position: fixed;
+	top: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+}
