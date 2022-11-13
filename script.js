@@ -16,7 +16,7 @@ class TrailElement {
     this.x = x;
     this.y = y;
     this.size = 5;
-    this.maxSize = 50;
+    this.maxSize = 100;
     this.opacity = 1;
     this.angle = 0;
     this.frames = 0;
@@ -34,10 +34,10 @@ class TrailElement {
     c.globalAlpha = this.opacity;
     
     if (shape === "square") {
-      c.translate(this.x + this.size / 2, this.y + this.size / 2)
+      c.translate(this.x, this.y)
       c.rotate(this.angle * Math.PI / 180);
-      c.translate(-(this.x + this.size / 2), -(this.y + this.size / 2))
-      c.strokeRect(this.x, this.y, this.size, this.size);
+      c.translate(-(this.x), -(this.y))
+      c.strokeRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
     } else if (shape === "circle") {
       c.beginPath();
       c.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
@@ -48,13 +48,13 @@ class TrailElement {
   }
 
   update() {
-    this.draw();
+    // this.draw();
 
     if (this.frames % this.frameRate === 0) {
       this.size++
       this.opacity = 1 - this.size / this.maxSize;
       this.hue += 10;
-      this.angle += 15;
+      this.angle += 5;
     };
 
     if (this.size > this.maxSize) return this.shouldRemove = true;
@@ -68,7 +68,10 @@ class TrailElement {
   c.fillRect(0, 0, canvas.width, canvas.height)
   
   trailElements = trailElements.filter(({ shouldRemove }) => !shouldRemove);
-  trailElements.forEach((trailElement) => trailElement.update())
+  trailElements.forEach((trailElement) => {
+    trailElement.draw()
+    trailElement.update()
+  })
   
   requestAnimationFrame(animate);
 })()
