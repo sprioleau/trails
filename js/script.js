@@ -1,3 +1,6 @@
+import Circle from "./classes/Circle.js";
+import Square from "./classes/Square.js";
+
 const circle = document.getElementById("circle");
 const square = document.getElementById("square");
 
@@ -11,69 +14,27 @@ let mouseIsPressed = false,
   trailElements = [],
   shape = "circle";
 
-class TrailElement {
-  constructor({ x, y, shape = "circle" }) {
-    this.x = x;
-    this.y = y;
-    this.shape = shape;
-    this.size = 5;
-    this.maxSize = 100;
-    this.opacity = 1;
-    this.angle = 0;
-    this.frames = 0;
-    this.frameRate = 2;
-    this.lineWidth = 1;
-    this.hue = Math.random() * 50 + 100;
-    this.shouldRemove = false; 
-  }
-
-  draw() {
-    c.lineWidth = this.lineWidth;
-    c.strokeStyle = `hsl(${this.hue}, 100%, 60%)`;
-    
-    c.save();
-    c.globalAlpha = this.opacity;
-    
-    if (this.shape === "square") {
-      c.translate(this.x, this.y)
-      c.rotate(this.angle * Math.PI / 180);
-      c.translate(-(this.x), -(this.y))
-      c.strokeRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
-    } else if (this.shape === "circle") {
-      c.beginPath();
-      c.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-      c.stroke();
-    }
-
-    c.restore();
-  }
-
-  update() {
-    if (this.frames % this.frameRate === 0) {
-      this.size++
-      this.opacity = 1 - this.size / this.maxSize;
-      this.hue += 10;
-      this.angle += 5;
-    };
-
-    if (this.size > this.maxSize) return this.shouldRemove = true;
-
-    this.frames++;
-  }
-}
-
-(function animate() {
+function animate() {
   c.fillStyle = "hsl(0, 0%, 11%)"
   c.fillRect(0, 0, canvas.width, canvas.height)
   
   trailElements = trailElements.filter(({ shouldRemove }) => !shouldRemove);
   trailElements.forEach((trailElement) => {
-    trailElement.draw()
+    trailElement.draw(c)
     trailElement.update()
   })
   
   requestAnimationFrame(animate);
-})()
+}
+
+animate();
+
+function getTrailElement({x, y}) {
+  let newElement;
+  if (shape === "circle") newElement = new Circle({ x, y})
+  if (shape === "square") newElement = new Square({ x, y})
+  return newElement;
+}
 
 function handleMousedown() {
   mouseIsPressed = true;
@@ -81,7 +42,7 @@ function handleMousedown() {
 
 function handleMousemove({x, y}) {
   if (!mouseIsPressed) return;
-  trailElements.push(new TrailElement({ x, y, shape }))
+  trailElements.push(getTrailElement({x, y}))
 }
 
 function handleMouseup() {
@@ -91,7 +52,7 @@ function handleMouseup() {
 function handleTouches(e) {
   Array.from(e.touches).forEach((touch) => {
     const { clientX: x, clientY: y } = touch;
-    trailElements.push(new TrailElement({ x, y, shape }))
+    trailElements.push(getTrailElement({x, y}))
   })
 }
 
