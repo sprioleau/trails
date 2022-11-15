@@ -26,9 +26,10 @@ export default class Star extends TrailElement {
 		c.rotate(this.angle * Math.PI / 180);
 		c.translate(-(this.x), -(this.y))
 
+		// Reference: https://stackoverflow.com/questions/25837158/how-to-draw-a-star-by-using-canvas-html5
 		c.beginPath();
     c.moveTo(this.x, this.y - this.outerRadius);
-    
+
 		for (let i = 0; i < this.spikes; i++) {
 			this.point1 = this.x + Math.cos(this.rotation) * this.outerRadius;
 			this.point2 = this.y + Math.sin(this.rotation) * this.outerRadius;
