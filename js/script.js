@@ -17,20 +17,24 @@ let mouseIsPressed = false,
   trailElements = [],
   shape = "circle";
 
-function animate() {
+let previousTime = 0;
+
+function animate(timestamp) {
+  const deltaTime = timestamp - previousTime;
+  previousTime = timestamp;
   c.fillStyle = "hsl(0, 0%, 11%)"
   c.fillRect(0, 0, canvas.width, canvas.height)
   
   trailElements = trailElements.filter(({ shouldRemove }) => !shouldRemove);
   trailElements.forEach((trailElement) => {
     trailElement.draw(c)
-    trailElement.update()
+    trailElement.update(deltaTime)
   })
   
   requestAnimationFrame(animate);
 }
 
-animate();
+animate(0);
 
 function getTrailElement({x, y}) {
   let newElement;

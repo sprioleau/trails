@@ -2,7 +2,8 @@ import TrailElement from "./TrailElement.js";
 
 export default class Circle extends TrailElement { 
   constructor({x, y}) {
-    super({x, y});
+    super({ x, y });
+    this.maxSize = 65;
   }
 
   draw(c) {

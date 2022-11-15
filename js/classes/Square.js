@@ -20,9 +20,16 @@ export default class Square extends TrailElement {
     c.restore();
   }
 
-  update() {
-    super.update();
-    this.angle += this.angleIncrement;
+  update(deltaTime) {
+    super.update(deltaTime);
+
+    if (this.frameTimer <= this.timeInterval) {
+      this.angle += this.angleIncrement;
+      this.frameTimer += this.deltaTime;
+    } else {
+      this.frameTimer = 0;
+    }
+    
     if (this.size > this.maxSize) return this.shouldRemove = true;
   }
 }
