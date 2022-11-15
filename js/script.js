@@ -1,8 +1,11 @@
 import Circle from "./classes/Circle.js";
 import Square from "./classes/Square.js";
+import Star from "./classes/Star.js";
 
 const circle = document.getElementById("circle");
 const square = document.getElementById("square");
+const star = document.getElementById("star");
+const shapes = document.querySelectorAll(".shape");
 
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext('2d');
@@ -31,8 +34,9 @@ animate();
 
 function getTrailElement({x, y}) {
   let newElement;
-  if (shape === "circle") newElement = new Circle({ x, y})
-  if (shape === "square") newElement = new Square({ x, y})
+  if (shape === "circle") newElement = new Circle({ x, y })
+  if (shape === "square") newElement = new Square({ x, y })
+  if (shape === "star") newElement = new Star({ x, y })
   return newElement;
 }
 
@@ -63,10 +67,20 @@ function handleResize() {
 
 function handleSelectCircle() {
   shape = "circle";
+  shapes.forEach((shape) => shape.classList.remove("selected"));
+  circle.classList.add("selected");
 }
 
 function handleSelectSquare() {
   shape = "square";
+  shapes.forEach((shape) => shape.classList.remove("selected"));
+  square.classList.add("selected");
+}
+
+function handleSelectStar() {
+  shape = "star";
+  shapes.forEach((shape) => shape.classList.remove("selected"));
+  star.classList.add("selected");
 }
 
 addEventListener("mousedown", handleMousedown)
@@ -77,3 +91,4 @@ addEventListener("touchmove", handleTouches)
 addEventListener("resize", handleResize)
 circle.addEventListener("click", handleSelectCircle)
 square.addEventListener("click", handleSelectSquare)
+star.addEventListener("click", handleSelectStar)

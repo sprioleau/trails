@@ -39,8 +39,18 @@
 			<h1>Trails</h1>
 			<p>Make a trail with your finger or mouse.</p>
 			<div class="shapes">
-				<button id="circle"></button>
-				<button id="square"></button>
+				<button id="circle" class="shape selected"></button>
+				<button id="square" class="shape"></button>
+				<button id="star" class="shape">
+					<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M10 1.12963L12.6416 6.48131C12.7144 6.62874 12.855 6.73097 13.0177 6.75474L18.9258 7.6183L14.6511 11.7818C14.5332 11.8967 14.4794 12.0623 14.5072 12.2245L15.5159 18.1058L10.2327 15.3275C10.087 15.2508 9.91297 15.2508 9.76727 15.3275L4.48409 18.1058L5.4928 12.2245C5.52063 12.0623 5.4668 11.8967 5.34887 11.7818L1.07421 7.6183L6.98231 6.75474C7.14499 6.73097 7.28558 6.62874 7.35835 6.48131L10 1.12963Z"
+							stroke="gold"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
 			</div>
 		</header>
 		<canvas></canvas>

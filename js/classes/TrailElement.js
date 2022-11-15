@@ -7,7 +7,7 @@ export default class TrailElement {
     this.maxSize = 100;
     this.opacity = 1;
     this.frames = 0;
-    this.frameRate = 2;
+    this.frameRate = 3;
     this.lineWidth = 1;
     this.hue = Math.random() * 50 + 100;
     this.hueIncrement = 10;
